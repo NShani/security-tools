@@ -112,11 +112,12 @@ public abstract class AbstractScanner extends Observable implements Scanner {
      */
     private NodeList convertXMLFileToDocument(File xmlFile) throws ScannerException {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-
+        String FEATURE = "http://apache.org/xml/features/disallow-doctype-decl";
         DocumentBuilder dBuilder;
         Document doc;
 
         try {
+            dbFactory.setFeature(FEATURE, true);
             dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(xmlFile);
         } catch (ParserConfigurationException e) {

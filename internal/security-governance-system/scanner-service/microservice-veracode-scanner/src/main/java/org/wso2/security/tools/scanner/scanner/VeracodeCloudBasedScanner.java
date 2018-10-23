@@ -100,8 +100,10 @@ public class VeracodeCloudBasedScanner extends AbstractScanner {
      */
     private static Document convertStringToDocument(String xmlStr) throws ScannerException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        String FEATURE = "http://apache.org/xml/features/disallow-doctype-decl";
         DocumentBuilder builder;
         try {
+            factory.setFeature(FEATURE, true);
             builder = factory.newDocumentBuilder();
             Document doc = builder.parse(new InputSource(new StringReader(xmlStr)));
             return doc;
